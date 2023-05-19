@@ -52,7 +52,7 @@ class NoteApp extends React.Component {
                 <NoteInput addNote={this.onAddNoteHandler} />    
                 <h2>Catatan Aktif</h2>
                 <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
-                <NoteList notes={this.state.notes} onArchive={this.onArchiveHandler} />
+                <NoteList notes={this.state.notes} isArchived={true} />
                 <h2>Arsip</h2>
                
             </div>
