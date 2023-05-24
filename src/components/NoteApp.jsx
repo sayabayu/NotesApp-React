@@ -47,13 +47,20 @@ class NoteApp extends React.Component {
    
 
     render() {
+        const daftarNote = this.state.notes.filter((note) => {
+            return note.archived === false;
+          });
+        const archivedNote = this.state.notes.filter((note) => {
+            return note.archived === true;
+        });
         return (
             <div className="body-note-app">  
                 <NoteInput addNote={this.onAddNoteHandler} />    
                 <h2>Catatan Aktif</h2>
-                <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
-                <NoteList notes={this.state.notes} isArchived={true} />
+                <NoteList notes={daftarNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
+               
                 <h2>Arsip</h2>
+                <NoteList notes={archivedNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
                
             </div>
         );
