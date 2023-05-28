@@ -58,7 +58,10 @@ class NoteApp extends React.Component {
    
 
     render() {
-      
+        const noteSearch = this.state.notes.filter((note) =>
+            note.title.toLowerCase().includes(this.state.search.toLowerCase())
+        );
+  
         const daftarNote = this.state.notes.filter((note) => {
             return note.archived === false;
           });
@@ -67,7 +70,7 @@ class NoteApp extends React.Component {
         });
         return (
             <div className="body-note-app">  
-                <NoteSearch search={this.state.search} onSearch={this.onNoteSearchHandler} />
+                <NoteSearch notes={noteSearch} search={this.state.search} onSearch={this.onNoteSearchHandler} />
 
                 <NoteInput addNote={this.onAddNoteHandler} />    
                 <h2>Catatan Aktif</h2>
