@@ -164,6 +164,20 @@ input::placeholder, textarea::placeholder {
 .delete-button:hover {
   color: #b00020;
 }
+.note-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #aaa;
+}
+.note-app-header h1 {
+  margin: 8px 0;
+  flex: 1;
+  color: white;
+}
+
+
+
 
 @media only screen and (min-width: 500px) {
   .notes-list {

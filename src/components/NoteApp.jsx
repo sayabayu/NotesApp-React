@@ -2,6 +2,7 @@ import React from 'react';
 import { getInitialData } from '../utils/index';
 import NoteList from './NoteList';
 import NoteInput from './NoteInput';
+import NoteSearch from './NoteSearch';
 
 
 class NoteApp extends React.Component {
@@ -9,11 +10,13 @@ class NoteApp extends React.Component {
         super(props);
         this.state = {
             notes: getInitialData(),
+            search: ''
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
+        this.onNoteSearchHandler = this.onNoteSearchHandler.bind(this);
       
     }
 
@@ -23,9 +26,10 @@ class NoteApp extends React.Component {
     }
 
     onArchiveHandler(id) {
-        const notes = this.state.notes.map(note => note.id === id ? (note.archived = !note.archived) : note);
+        const notes = this.state.notes.map(note => note.id === id ? {...note, archived : !note.archived} : note);
         this.setState({notes});
     }
+
 
     onAddNoteHandler({ title, body }) {
         this.setState((prevState) => {
@@ -44,9 +48,17 @@ class NoteApp extends React.Component {
         })
     }
 
+    onNoteSearchHandler(event) {
+        this.setState(() => {
+          return {
+            search : event.target.value
+          }
+        })
+      }
    
 
     render() {
+      
         const daftarNote = this.state.notes.filter((note) => {
             return note.archived === false;
           });
@@ -55,6 +67,8 @@ class NoteApp extends React.Component {
         });
         return (
             <div className="body-note-app">  
+                <NoteSearch search={this.state.search} onSearch={this.onNoteSearchHandler} />
+
                 <NoteInput addNote={this.onAddNoteHandler} />    
                 <h2>Catatan Aktif</h2>
                 <NoteList notes={daftarNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
