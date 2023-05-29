@@ -62,10 +62,10 @@ class NoteApp extends React.Component {
             note.title.toLowerCase().includes(this.state.search.toLowerCase())
         );
   
-        const daftarNote = this.state.notes.filter((note) => {
+        const daftarNote = noteSearch.filter((note) => {
             return note.archived === false;
           });
-        const archivedNote = this.state.notes.filter((note) => {
+        const archivedNote = noteSearch.filter((note) => {
             return note.archived === true;
         });
         return (

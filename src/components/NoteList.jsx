@@ -13,7 +13,7 @@ function NoteList({ notes, onDelete, onArchive }) {
                         id={note.id}
                         onDelete={onDelete}
                         onArchive={onArchive}
-                        
+                        isArchived={note.archived}
                         {...note} />
                 ))
             )}
